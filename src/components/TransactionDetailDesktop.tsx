@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faClock, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'motion/react';
 import type { Transaction } from '../types';
 import { format } from 'date-fns';
 
@@ -23,17 +24,31 @@ export const TransactionDetailDesktop: React.FC<TransactionDetailDesktopProps> =
   };
 
   return (
-    <div className="bg-card border border-border/50 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50 overflow-hidden">
+    <motion.div 
+      className="bg-card border border-border/50 rounded-2xl shadow-sm bg-gradient-to-br from-card to-card/50 overflow-hidden"
+      layout
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 20 }}
+      transition={{ 
+        duration: 0.15, 
+        ease: "easeOut",
+        layout: { duration: 0.15, ease: "easeOut" }
+      }}
+    >
       {/* Desktop sidebar close button */}
       <div className="flex justify-end p-4 pb-2">
-        <button 
+        <motion.button 
           onClick={() => navigate('/')}
-          className="flex items-center text-card-foreground hover:text-red-500 transition-all duration-300 group"
+          className="flex items-center text-card-foreground hover:text-red-500 group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.1 }}
         >
-          <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-red-500/10 transition-colors duration-300">
-            <FontAwesomeIcon icon={faTimes} className="text-lg group-hover:text-red-500 transition-colors duration-300" />
+          <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-red-500/10">
+            <FontAwesomeIcon icon={faTimes} className="text-lg group-hover:text-red-500" />
           </div>
-        </button>
+        </motion.button>
       </div>
 
       {/* Transaction Summary */}
@@ -85,6 +100,6 @@ export const TransactionDetailDesktop: React.FC<TransactionDetailDesktopProps> =
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

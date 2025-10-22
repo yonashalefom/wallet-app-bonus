@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faCheck, faClock } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'motion/react';
 import type { Transaction } from '../types';
 import { format } from 'date-fns';
 
@@ -23,29 +24,47 @@ export const TransactionDetailMobile: React.FC<TransactionDetailMobileProps> = (
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <motion.div 
+      className="min-h-screen bg-background text-foreground"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
       {/* Header with back button */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-md shadow-sm">
+      <motion.div 
+        className="sticky top-0 z-10 bg-background/95 backdrop-blur-md shadow-sm"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, delay: 0.05 }}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center h-16">
             <div className="flex items-center gap-3">
-              <button 
+              <motion.button 
                 onClick={() => navigate('/')}
-                className="flex items-center text-card-foreground hover:text-blue-500 transition-all duration-300 group"
+                className="flex items-center text-card-foreground hover:text-blue-500 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
               >
-                <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-blue-500/10 transition-colors duration-300">
-                  <FontAwesomeIcon icon={faChevronLeft} className="text-lg group-hover:text-blue-500 transition-colors duration-300" />
+                <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-blue-500/10">
+                  <FontAwesomeIcon icon={faChevronLeft} className="text-lg group-hover:text-blue-500" />
                 </div>
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto py-6">
         {/* Transaction Summary */}
-        <div className="text-center mb-8">
+        <motion.div 
+          className="text-center mb-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
+        >
           <div>
             <div className="text-4xl sm:text-5xl font-bold text-foreground mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
               {formatAmount(transaction.amount, transaction.type)}
@@ -57,10 +76,15 @@ export const TransactionDetailMobile: React.FC<TransactionDetailMobileProps> = (
           <div className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full inline-block">
             {formatDate(transaction.date)}
           </div>
-        </div>
+        </motion.div>
         
         {/* Transaction Details Card */}
-        <div className="bg-card border border-border/50 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50">
+        <motion.div 
+          className="bg-card border border-border/50 rounded-2xl p-4 shadow-sm bg-gradient-to-br from-card to-card/50"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.15 }}
+        >
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
@@ -92,8 +116,8 @@ export const TransactionDetailMobile: React.FC<TransactionDetailMobileProps> = (
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };

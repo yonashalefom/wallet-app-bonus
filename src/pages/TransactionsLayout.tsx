@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { Outlet, useOutlet, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import type { Transaction, CardData } from '../types';
@@ -12,6 +13,17 @@ import transactionsData from '../data/transactions.json';
 export const TransactionsLayout: React.FC = () => {
   const navigate = useNavigate();
   const outlet = useOutlet();
+
+  // Force scroll to top on every page load/reload to prevent scroll position conflicts with animations
+  useEffect(() => {
+    // Immediately scroll to top
+    window.scrollTo(0, 0);
+    
+    // Also prevent any scroll restoration that browsers might do
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   const cardData: CardData = useMemo(() => ({
     balance: generateRandomBalance(transactionsData.limit),
@@ -28,9 +40,19 @@ export const TransactionsLayout: React.FC = () => {
   const availableAmount = cardData.limit - cardData.balance;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <motion.div 
+      className="min-h-screen bg-background text-foreground"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+    >
       {/* Header with theme controls */}
-      <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm">
+      <motion.div 
+        className="sticky top-0 z-10 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
@@ -44,12 +66,22 @@ export const TransactionsLayout: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main content area with responsive master-detail */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <motion.div 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+      >
         {/* Cards Grid - Mobile: 2 cols x 2 rows (right card spans rows) | Desktop: 3 cols */}
-        <div className={`grid grid-cols-2 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-4 lg:gap-6 mb-8 ${outlet ? 'hidden lg:grid' : ''}`}>
+        <motion.div 
+          className={`grid grid-cols-2 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-4 lg:gap-6 mb-8 ${outlet ? 'hidden lg:grid' : ''}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+        >
           {/* Card Balance Block */}
           <div className="bg-card border border-border/50 rounded-2xl p-4 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50 col-start-1 row-start-1 lg:col-start-auto lg:row-start-auto">
             <div className="flex items-center justify-between mb-3">
@@ -91,10 +123,15 @@ export const TransactionsLayout: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Latest Transactions Header - Full Width */}
-        <div className="space-y-6">
+        <motion.div 
+          className="space-y-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.4 }}
+        >
           <div className={`flex items-center justify-between ${outlet ? 'hidden lg:flex' : 'flex'}`}>
             <h2 className="text-2xl font-bold text-foreground">Latest Transactions</h2>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -106,7 +143,12 @@ export const TransactionsLayout: React.FC = () => {
           {/* Responsive content area */}
           <div className={`${outlet ? 'grid grid-cols-1 lg:grid-cols-3 gap-6' : 'block'}`}>
             {/* List column */}
-            <div className={`${outlet ? 'hidden lg:block lg:col-span-2' : 'block'}`}>
+            <motion.div 
+              className={`${outlet ? 'hidden lg:block lg:col-span-2' : 'block'}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+            >
               <div className="bg-card border border-border/50 rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300">
                 {cardData.transactions.slice(0, 10).map((transaction, index) => (
                   <div key={transaction.id}>
@@ -120,16 +162,18 @@ export const TransactionsLayout: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Detail sidebar (desktop) or full screen (mobile when active) */}
             <div className={`${outlet ? 'block lg:col-span-1' : 'hidden'}`}>
-              <Outlet />
+              <AnimatePresence mode="wait">
+                {outlet && <Outlet />}
+              </AnimatePresence>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 };
 
