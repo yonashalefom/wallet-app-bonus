@@ -47,10 +47,10 @@ export const TransactionDetail: React.FC = () => {
           <div className="flex items-center h-16">
             <button 
               onClick={() => navigate('/')}
-              className="flex items-center text-card-foreground hover:text-primary transition-all duration-300 group"
+              className="flex items-center text-card-foreground hover:text-blue-500 transition-all duration-300 group"
             >
-              <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-primary/10 transition-colors duration-300">
-                <FontAwesomeIcon icon={faChevronLeft} className="text-lg group-hover:text-primary transition-colors duration-300" />
+              <div className="w-8 h-8 rounded-lg bg-muted/50 flex items-center justify-center group-hover:bg-blue-500/10 transition-colors duration-300">
+                <FontAwesomeIcon icon={faChevronLeft} className="text-lg group-hover:text-blue-500 transition-colors duration-300" />
               </div>
             </button>
           </div>
@@ -61,11 +61,10 @@ export const TransactionDetail: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Transaction Summary */}
         <div className="text-center mb-12">
-          <div className="relative">
+          <div>
             <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
               {formatAmount(transaction.amount, transaction.type)}
             </div>
-            <div className="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
           </div>
           <div className="text-lg sm:text-xl text-muted-foreground mb-2 font-medium">
             {transaction.name}

@@ -2,25 +2,27 @@
 
 A modern, mobile-first wallet application built with React and TypeScript that provides a clean and intuitive interface for managing your financial transactions and tracking daily rewards.
 
-🔗 **[Live Demo](https://wallet-p20ei32vr-yonas-halefoms-projects.vercel.app/)**
+🔗 **[Live Demo](https://wallet-app-bonus.vercel.app/)**
 
-![Wallet App Screenshot](docs/images/app-screenshot-home-updated.png)
+## 📸 Screenshots
 
-## 📱 Screenshots
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <strong>Main Dashboard</strong><br/>
-        <img src="docs/images/app-screenshot-home-updated.png" alt="Wallet App Home" width="200"/>
-      </td>
-      <td align="center">
-        <strong>Transaction Details</strong><br/>
-        <img src="docs/images/app-screenshot-transaction-details-updated.png" alt="Transaction Details" width="200"/>
-      </td>
-    </tr>
-  </table>
+<div align="center" style="display: grid; gap: 16px;">
+  <div>
+    <strong>Desktop – Light Theme</strong><br/>
+    <img src="docs/images/app-screenshot-home-desktop-light-mode.png" alt="Wallet App – Desktop Light" width="100%"/>
+  </div>
+  <div>
+    <strong>Desktop – Dark Theme</strong><br/>
+    <img src="docs/images/app-screenshot-home-desktop-dark-mode.png" alt="Wallet App – Desktop Dark" width="100%"/>
+  </div>
+  <div>
+    <strong>Mobile – Light Theme</strong><br/>
+    <img src="docs/images/app-screenshot-home-mobile-light-mode.png" alt="Wallet App – Mobile Light" width="100%"/>
+  </div>
+  <div>
+    <strong>Mobile – Dark Theme</strong><br/>
+    <img src="docs/images/app-screenshot-home-mobile-dark-mode.png" alt="Wallet App – Mobile Dark" width="100%"/>
+  </div>
 </div>
 
 ## 🌟 Features
@@ -51,20 +53,20 @@ A modern, mobile-first wallet application built with React and TypeScript that p
 
 **Current Branch: `main`**
 
-This branch features a **fixed-width mobile-optimized layout** using `max-w-sm` for a consistent mobile experience across all devices.
+This branch provides a **fully responsive layout** (mobile and desktop) leveraging the browser’s full width.
 
 ### Layout Options
 
-- **Fixed-Width Layout** (current branch): Uses a fixed mobile-optimized width (`max-w-sm`) for consistent mobile experience
-- **Full-Width Layout** (`full-width-layout-version` branch): Uses the browser's full width for maximum screen utilization
+- **Responsive Layout** (current): Full-width, mobile-first design with desktop enhancements
+- **Fixed-Width Layout** (`fixed-width-layout-version` branch): Classic mobile-only composition using a constrained width
 
 To switch between layouts:
 ```bash
-# For fixed-width mobile layout (current)
+# Responsive layout (current)
 git checkout main
 
-# For full-width responsive layout
-git checkout full-width-layout-version
+# Fixed-width mobile layout
+git checkout fixed-width-layout-version
 ```
 
 ## 🚀 Quick Start

@@ -6,7 +6,7 @@
   :root {
     --background: #FFFFFF;
     --foreground: #020817;
-    --card: #FFFFFF;
+    --card: #F8FAFC; /* subtle elevation for cards in light theme */
     --card-foreground: #020817;
     --primary: #3B82F6;
     --primary-foreground: #EFF6FF;

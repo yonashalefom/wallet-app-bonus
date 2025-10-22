@@ -45,15 +45,15 @@ export const TransactionsList: React.FC = () => {
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {/* Cards Grid - Mobile: 2 columns, Desktop: 3 columns */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+        {/* Cards Grid - Mobile: 2 cols x 2 rows (right card spans rows) | Desktop: 3 cols */}
+        <div className="grid grid-cols-2 grid-rows-2 lg:grid-cols-3 lg:grid-rows-1 gap-4 lg:gap-6 mb-8">
           {/* Card Balance Block */}
-          <div className="bg-card border border-border/50 rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50">
+          <div className="bg-card border border-border/50 rounded-2xl p-4 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50 col-start-1 row-start-1 lg:col-start-auto lg:row-start-auto">
             <div className="flex items-center justify-between mb-3">
               <div className="text-sm font-semibold text-card-foreground">Card Balance</div>
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             </div>
-            <div className="text-2xl md:text-3xl font-bold text-card-foreground mb-2">
+            <div className="text-2xl lg:text-3xl font-bold text-card-foreground mb-2">
               ${cardData.balance.toFixed(2)}
             </div>
             <div className="text-sm text-muted-foreground">
@@ -62,14 +62,9 @@ export const TransactionsList: React.FC = () => {
           </div>
           
           {/* Daily Points Block */}
-          <div className="bg-card border border-border/50 rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-sm font-semibold text-card-foreground">Daily Points</div>
-              <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-bold">★</span>
-              </div>
-            </div>
-            <div className="text-xl md:text-2xl font-bold text-card-foreground mb-1">
+          <div className="bg-card border border-border/50 rounded-2xl p-4 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50 col-start-1 row-start-2 lg:col-start-auto lg:row-start-auto">
+            <div className="mb-3 text-sm font-semibold text-card-foreground">Daily Points</div>
+            <div className="text-xl lg:text-2xl font-bold text-card-foreground mb-1">
               {dailyPoints.formattedPoints}
             </div>
             <div className="text-sm text-muted-foreground">
@@ -77,8 +72,8 @@ export const TransactionsList: React.FC = () => {
             </div>
           </div>
           
-          {/* No Payment Due Block - Mobile: spans both columns, Desktop: single column */}
-          <div className="col-span-2 md:col-span-2 lg:col-span-1 bg-card border border-border/50 rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50">
+          {/* No Payment Due Block */}
+          <div className="bg-card border border-border/50 rounded-2xl p-4 lg:p-6 shadow-sm hover:shadow-md transition-all duration-300 bg-gradient-to-br from-card to-card/50 col-start-2 row-start-1 row-span-2 lg:col-start-auto lg:row-start-auto lg:row-span-1">
             <div className="flex flex-col h-full">
               <div className="flex-1">
                 <div className="text-sm font-semibold text-card-foreground mb-3">No Payment Due</div>
@@ -87,8 +82,8 @@ export const TransactionsList: React.FC = () => {
                 </div>
               </div>
               <div className="flex justify-end mt-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-sm">
-                  <FontAwesomeIcon icon={faCheck} className="text-white text-lg" />
+                <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-sm bg-white dark:bg-muted border border-border/50">
+                  <FontAwesomeIcon icon={faCheck} className="text-lg" style={{ color: 'var(--foreground)' }} />
                 </div>
               </div>
             </div>
@@ -99,8 +94,8 @@ export const TransactionsList: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-foreground">Latest Transactions</h2>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>Recent Activity</span>
             </div>
           </div>
