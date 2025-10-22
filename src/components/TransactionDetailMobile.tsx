@@ -25,14 +25,14 @@ export const TransactionDetailMobile: React.FC<TransactionDetailMobileProps> = (
 
   return (
     <motion.div 
-      className="min-h-screen bg-background text-foreground"
+      className="bg-background text-foreground"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
     >
       {/* Header with back button */}
       <motion.div 
-        className="sticky top-0 z-10 bg-background/95 backdrop-blur-md shadow-sm"
+        className="sticky top-0 z-10 bg-background/95 backdrop-blur-md"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, delay: 0.05 }}
