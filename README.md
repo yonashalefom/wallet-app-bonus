@@ -15,14 +15,20 @@ A modern, mobile-first wallet application built with React and TypeScript that p
     <strong>Desktop – Dark Theme</strong><br/>
     <img src="docs/images/app-screenshot-home-desktop-dark-mode.png" alt="Wallet App – Desktop Dark" width="100%"/>
   </div>
-  <div>
-    <strong>Mobile – Light Theme</strong><br/>
-    <img src="docs/images/app-screenshot-home-mobile-light-mode.png" alt="Wallet App – Mobile Light" width="100%"/>
-  </div>
-  <div>
-    <strong>Mobile – Dark Theme</strong><br/>
-    <img src="docs/images/app-screenshot-home-mobile-dark-mode.png" alt="Wallet App – Mobile Dark" width="100%"/>
-  </div>
+  
+  <!-- Mobile screenshots side-by-side -->
+  <table style="width:100%;">
+    <tr>
+      <td style="width:50%; padding-right:8px;" align="center">
+        <strong>Mobile – Light Theme</strong><br/>
+        <img src="docs/images/app-screenshot-home-mobile-light-mode.png" alt="Wallet App – Mobile Light" width="100%"/>
+      </td>
+      <td style="width:50%; padding-left:8px;" align="center">
+        <strong>Mobile – Dark Theme</strong><br/>
+        <img src="docs/images/app-screenshot-home-mobile-dark-mode.png" alt="Wallet App – Mobile Dark" width="100%"/>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## 🌟 Features
@@ -49,25 +55,7 @@ A modern, mobile-first wallet application built with React and TypeScript that p
 - **Cashback Tracking**: Automatic cashback percentage display
 - **Authorized User Support**: Track transactions made by family members
 
-## 🌿 Branch Information
 
-**Current Branch: `main`**
-
-This branch provides a **fully responsive layout** (mobile and desktop) leveraging the browser’s full width.
-
-### Layout Options
-
-- **Responsive Layout** (current): Full-width, mobile-first design with desktop enhancements
-- **Fixed-Width Layout** (`fixed-width-layout-version` branch): Classic mobile-only composition using a constrained width
-
-To switch between layouts:
-```bash
-# Responsive layout (current)
-git checkout main
-
-# Fixed-width mobile layout
-git checkout fixed-width-layout-version
-```
 
 ## 🚀 Quick Start
 
