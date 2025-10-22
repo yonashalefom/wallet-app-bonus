@@ -10,7 +10,6 @@ interface AccentColorOptionProps {
 }
 
 const AccentColorOption: React.FC<AccentColorOptionProps> = ({
-  color,
   colorValue,
   label,
   isSelected,
